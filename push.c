@@ -7,45 +7,50 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new, *tmp;
-	char *push_arg = strtok(NULL, "\n \t");
-	int pVal;
-	/*if push, tests if the push_arg was valid or not */
-	if (!is_int(push_arg))
-	{
-		fprintf(stdout, "L%u: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+	stack_t *tmp, *new;
+	int i;
 
-
-	pVal = atoi(push_arg);
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		fprintf(stdout, "Error: malloc failed\n");
-		exit(EXIT_FAILURE);
-	}
-	new->n = pVal;
-	new->prev = NULL;
-	new->next = NULL;
-	/** checks if stack is empty **/
-	if ((*stack) == NULL)
-		*stack = new;
-	else if (SQ)
-	{
-		/** puts new node on top if not empty **/
-		(*stack)->prev = new;
-		new->next = *stack;
-		*stack = new;
-	}
-	else
-	{
-		/**puts new node on the bottom **/
-		tmp = *stack;
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		tmp->next = new;
-		new->prev = tmp;
+		set_op_tok_error(malloc_error());
+		return;
 	}
 
+	if (op_toks[1] == NULL)
+	{
+		set_op_tok_error(no_int_error(line_number));
+		return;
+	}
+
+	for (i = 0; op_toks[1][i]; i++)
+	{
+		if (op_toks[1][i] == '-' && i == 0)
+			continue;
+		if (op_toks[1][i] < '0' || op_toks[1][i] > '9')
+		{
+			set_op_tok_error(no_int_error(line_number));
+			return;
+		}
+	}
+	new->n = atoi(op_toks[1]);
+
+	if (check_mode(*stack) == STACK) /* STACK mode insert at front */
+	{
+		tmp = (*stack)->next;
+		new->prev = *stack;
+		new->next = tmp;
+		if (tmp)
+			tmp->prev = new;
+		(*stack)->next = new;
+	}
+	else /* QUEUE mode insert at end */
+	{
+		tmp = *stack;
+		while (tmp->next)
+			tmp = tmp->next;
+		new->prev = tmp;
+		new->next = NULL;
+		tmp->next = new;
+	}
 }

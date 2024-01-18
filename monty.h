@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
+#include <unistd.h>
 
 #define UNUSED(x) (void)(x)
 #define LINE_MAX 1024
