@@ -1,0 +1,65 @@
+1) Arithmetic Operations:
+
+i) File Name: arithmetics.c
+
+ii) Prototypes: sub, divide, multiply, moddy
+
+iii) Description: This file contains functions to handle arithmetic operations on the stack, including subtraction (sub), division (divide), multiplication (multiply), and modulus (moddy).
+
+2) Character and String Operations:
+
+i) File Name: char_string_ops.c
+ii) Prototypes: pchar, pstr
+iii) Description: This file implements operations involving characters and strings. The functions included are pchar (print character) and pstr (print string).
+
+3) Rotation Operations:
+
+i) File Name: rotate_ops.c
+ii) Prototypes: rotl, rotr
+iii) Description: The file handles rotation operations on the stack. It includes functions for rotating the stack to the left (rotl) and to the right (rotr).
+
+4) Mode Switching Operations:
+
+i) File Name: mode_switch.c
+ii) Prototypes: stack, queue
+iii) Description: This file provides functions to switch between stack and queue modes. The functions stack and queue change the format of the data structure accordingly.
+
+5) Custom Standard Library Functions:
+
+i) File Name: custom_lib.c
+ii) Prototypes: strtow, get_int
+iii) Description: The custom library file includes functions that extend the standard library. It contains strtow (string to words) and get_int (convert integer to string).
+
+6) Magic Stack (magic_stack.c):
+
+a) File Name: magic_push_pop.c
+i) Prototypes: push, pall, pint, pop
+ii) Description: This file manages the core stack operations, such as pushing elements onto the stack (push), printing all elements (pall), printing the top element (pint), and popping the top element (pop).
+
+b) File Name: magic_swap_add.c
+ii) Prototypes: swap, add, nop
+iii) Description: This part of the magic stack file handles additional operations like swapping the top two elements (swap), adding the top two elements (add), and performing a no-operation (nop).
+
+7) Interpreter (interpreter.c):
+
+a) File Name: interpreter_init_free.c
+i) Prototypes: free_stack, init_stack, free_tokens
+ii) Description: The interpreter initialization and cleanup functions are contained in this file. It includes functions for freeing the stack (free_stack), initializing the stack (init_stack), and freeing tokens (free_tokens).
+
+b) File Name: interpreter_check_run.c
+i) Prototypes: check_mode, run_monty
+ii) Description: This part of the interpreter file checks the mode (check_mode) and runs the Monty interpreter (run_monty).
+
+c) File Name: interpreter_errors.c
+i) Prototypes: set_op_tok_error
+ii) Description: The interpreter errors file handles functions related to setting interpreter errors (set_op_tok_error).
+
+8) Errors (errors.c):
+
+a) File Name: error_messages.c
+i) Prototypes: usage_error, malloc_error, f_open_error, unknown_op_error
+ii) Description: The error_messages file includes functions for displaying various error messages, such as usage error, malloc error, file open error, and unknown opcode error.
+
+b) File Name: error_check.c
+i) Prototypes: no_int_error, pop_error, pint_error, short_stack_error
+ii) Description: The error_check file provides functions to check for specific errors, including no integer error, pop error, pint error, and short stack error.
