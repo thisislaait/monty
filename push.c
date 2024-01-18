@@ -7,42 +7,39 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-    char *push_arg = strtok(NULL, "\n \t");
+	char *push_arg = strtok(NULL, "\n\t");
+	int pVal;
 
-    if (!is_valid_push_arg(push_arg, line_number))
-    {
-        exit(EXIT_FAILURE);
-    }
+	if (!is_valid_push_arg(push_arg, line_number))
+		exit(EXIT_FAILURE);
 
-    int pVal = atoi(push_arg);
+	pVal = atoi(push_arg);
 
-    stack_t *new_node = create_node(pVal);
-    if (!new_node)
-    {
-        fprintf(stdout, "Error: malloc failed\n");
-        exit(EXIT_FAILURE);
-    }
+	stack_t *new_node = create_node(pVal);
 
-    if (*stack == NULL)
-    {
-        *stack = new_node;
-    }
-    else if (SQ)
-    {
-        new_node->next = *stack;
-        (*stack)->prev = new_node;
-        *stack = new_node;
-    }
-    else
-    {
-        stack_t *tmp = *stack;
-        while (tmp->next != NULL)
-        {
-            tmp = tmp->next;
-        }
-        tmp->next = new_node;
-        new_node->prev = tmp;
-    }
+	if (!new_node)
+	{
+		fprintf(stdout, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+
+	if (*stack == NULL)
+		*stack = new_node;
+	else if (SQ)
+	{
+		new_node->next = *stack;
+		(*stack)->prev = new_node;
+		*stack = new_node;
+	}
+	else
+	{
+		stack_t *tmp = *stack;
+
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = new_node;
+		new_node->prev = tmp;
+	}
 }
 
 /**
@@ -53,12 +50,12 @@ void push(stack_t **stack, unsigned int line_number)
  */
 int is_valid_push_arg(char *push_arg, unsigned int line_number)
 {
-    if (!push_arg || (!isdigit(*push_arg) && *push_arg != '-'))
-    {
-        fprintf(stdout, "L%u: usage: push integer\n", line_number);
-        return 0;
-    }
-    return 1;
+	if (!push_arg || (!isdigit(*push_arg) && *push_arg != '-'))
+	{
+		fprintf(stdout, "L%u: usage: push integer\n", line_number);
+		return (0);
+	}
+	return (1);
 }
 
 /**
@@ -68,15 +65,15 @@ int is_valid_push_arg(char *push_arg, unsigned int line_number)
  */
 stack_t *create_node(int value)
 {
-    stack_t *new_node = malloc(sizeof(stack_t));
-    if (!new_node)
-    {
-        return NULL;
-    }
+	stack_t *new_node = malloc(sizeof(stack_t));
 
-    new_node->n = value;
-    new_node->prev = NULL;
-    new_node->next = NULL;
+	if (!new_node)
+		return (NULL);
 
-    return new_node;
+	new_node->n = value;
+	new_node->prev = NULL;
+	new_node->next = NULL;
+
+	return (new_node);
 }
+

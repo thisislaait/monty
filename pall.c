@@ -7,9 +7,9 @@
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
-    UNUSED(line_number);
+	UNUSED(line_number);
 
-    print_stack(*stack);
+	print_stack(*stack);
 }
 
 /**
@@ -18,11 +18,12 @@ void pall(stack_t **stack, unsigned int line_number)
  */
 void print_stack(stack_t *stack)
 {
-    stack_t *tmp = stack;
+	stack_t *tmp = stack;
 
-    while (tmp != NULL)
-    {
-        printf("%d\n", tmp->n);
-        tmp = tmp->next;
-    }
+	while (tmp != NULL)
+	{
+		printf("%d\n", tmp->n);
+		tmp = tmp->next;
+	}
 }
+
