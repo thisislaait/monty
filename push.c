@@ -7,50 +7,135 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp, *new;
-	int i;
+	stack_t *new, *tmp;
+	char *push_arg = strtok(NULL, "\n \t");
+	int pVal;
+	/*if push, tests if the push_arg was valid or not */
+	if (!is_int(push_arg))
+	{
+		fprintf(stdout, "L%u: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
 
+
+	pVal = atoi(push_arg);
 	new = malloc(sizeof(stack_t));
 	if (new == NULL)
 	{
-		set_op_tok_error(malloc_error());
-		return;
+		fprintf(stdout, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
 	}
-
-	if (op_toks[1] == NULL)
+	new->n = pVal;
+	new->prev = NULL;
+	new->next = NULL;
+	/** checks if stack is empty **/
+	if ((*stack) == NULL)
+		*stack = new;
+	else if (SQ)
 	{
-		set_op_tok_error(no_int_error(line_number));
-		return;
+		/** puts new node on top if not empty **/
+		(*stack)->prev = new;
+		new->next = *stack;
+		*stack = new;
 	}
-
-	for (i = 0; op_toks[1][i]; i++)
+	else
 	{
-		if (op_toks[1][i] == '-' && i == 0)
-			continue;
-		if (op_toks[1][i] < '0' || op_toks[1][i] > '9')
-		{
-			set_op_tok_error(no_int_error(line_number));
-			return;
-		}
-	}
-	new->n = atoi(op_toks[1]);
-
-	if (check_mode(*stack) == STACK) /* STACK mode insert at front */
-	{
-		tmp = (*stack)->next;
-		new->prev = *stack;
-		new->next = tmp;
-		if (tmp)
-			tmp->prev = new;
-		(*stack)->next = new;
-	}
-	else /* QUEUE mode insert at end */
-	{
+		/**puts new node on the bottom **/
 		tmp = *stack;
-		while (tmp->next)
+		while (tmp->next != NULL)
 			tmp = tmp->next;
-		new->prev = tmp;
-		new->next = NULL;
 		tmp->next = new;
+		new->prev = tmp;
 	}
+
+}
+
+
+/**
+ * pall - prints all values on the stack, starting from the top of the stack.
+ * @stack: the stack
+ * @line_number: the current line number
+ *
+ * Return: void
+ */
+void pall(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	UNUSED(line_number);
+
+	tmp = *stack;
+	while (tmp != NULL)
+	{
+		printf("%d\n", tmp->n);
+		tmp = tmp->next;
+	}
+}
+
+
+**
+ * pint - prints the value at the top of the stack, followed by a new line.
+ * @stack: the stack
+ * @line_number: the current line number
+ *
+ * Return: void
+ */
+void pint(stack_t **stack, unsigned int line_number)
+{
+	if (*stack == NULL)
+	{
+		fprintf(stdout, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
+}
+
+
+/**
+ * pop - removes the top element of the stack.
+ * @stack: the stack
+ * @line_number: the current line number
+ *
+ * Return: void
+ */
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if ((*stack) == NULL)
+	{
+		fprintf(stdout, "L%d: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	tmp = *stack;
+	*stack = (*stack)->next;
+	free(tmp);
+}
+
+
+/**
+ * swap - swaps the top two elements of the stack.
+ * @stack: the stack
+ * @line_number: the current line number
+ *
+ * Return: void
+ */
+void swap(stack_t **stack, unsigned int line_number)
+{
+	int swapper;
+
+	if ((*stack) == NULL)
+	{
+		fprintf(stdout, "L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->next == NULL)
+	{
+		fprintf(stdout, "L%d: can't swap, stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	swapper = (*stack)->n;
+	(*stack)->n = (*stack)->next->n;
+	(*stack)->next->n = swapper;
 }
