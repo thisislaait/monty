@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 int SQ = 1;
 /**
  * main - main function for monty
