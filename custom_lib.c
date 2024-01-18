@@ -1,6 +1,7 @@
 /* File Name: custom_lib.c */
 
 #include "monty.h"
+#include <string.h>
 
 /**
  * strtow - Splits a string into words.

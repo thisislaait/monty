@@ -6,6 +6,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <unistd.h>
+#include <string.h>
 
 #define UNUSED(x) (void)(x)
 #define LINE_MAX 1024
