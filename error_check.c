@@ -44,3 +44,14 @@ int short_stack_error(unsigned int line_number, char *op)
     fprintf(stderr, "L%u: can't %s, stack too short\n", line_number, op);
     return EXIT_FAILURE;
 }
+
+/**
+ * div_error - handles division error
+ * @line_number: line number of the opcode in the Monty bytecode file
+ * Return: (EXIT_FAILURE)
+ */
+int div_error(unsigned int line_number)
+{
+    fprintf(stderr, "L%u: division by zero\n", line_number);
+    return (EXIT_FAILURE);
+}

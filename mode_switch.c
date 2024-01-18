@@ -9,7 +9,9 @@
  */
 void monty_stack(stack_t **stack, unsigned int line_number)
 {
-    /* Implementation of stack */
+    UNUSED(stack);
+    UNUSED(line_number);
+    SQ = STACK;
 }
 
 /**
@@ -19,5 +21,6 @@ void monty_stack(stack_t **stack, unsigned int line_number)
  */
 void monty_queue(stack_t **stack, unsigned int line_number)
 {
-    /* Implementation of queue */
+    UNUSED(stack);
+    UNUSED(line);
 }

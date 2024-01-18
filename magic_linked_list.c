@@ -51,3 +51,24 @@ void add_node_end(stack_t **stack, int value)
     last->next = new_node;
     new_node->prev = last;
 }
+
+/**
+ * swap_nodes - swaps the top two nodes of the stack
+ * @stack: double pointer to the beginning of the stack
+ */
+void swap_nodes(stack_t **stack)
+{
+    stack_t *tmp = NULL;
+
+    if (!stack || !(*stack) || !(*stack)->next)
+        return;
+
+    tmp = (*stack)->next;
+    (*stack)->next = tmp->next;
+    tmp->next = *stack;
+    tmp->prev = NULL;
+    (*stack)->prev = tmp;
+
+    *stack = tmp;
+}
+

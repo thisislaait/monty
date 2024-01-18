@@ -9,7 +9,20 @@
  */
 void monty_rotl(stack_t **stack, unsigned int line_number)
 {
-    /* Implementation of rotl */
+    stack_t *temp = *stack;
+
+    UNUSED(line_number);
+
+    if (temp && temp->next)
+    {
+        *stack = temp->next;
+        temp->next->prev = NULL;
+
+        while (temp->next)
+            temp = temp->next;
+
+        temp->next = temp;
+    }
 }
 
 /**
@@ -19,5 +32,17 @@ void monty_rotl(stack_t **stack, unsigned int line_number)
  */
 void monty_rotr(stack_t **stack, unsigned int line_number)
 {
-    /* Implementation of rotr */
+    stack_t *temp = *stack;
+
+    UNUSED(line_number);
+
+    if (temp && temp->next)
+    {
+        while (temp->next->next)
+            temp = temp->next;
+
+        temp->next->prev = NULL;
+        temp->next->next = *stack;
+        *stack = temp->next;
+    }
 }

@@ -9,7 +9,10 @@
  */
 int check_mode(stack_t *stack)
 {
-    /* Implementation of check_mode */
+    if (!stack)
+        return STACK;
+
+    return (stack->n == QUEUE);
 }
 
 /**
@@ -19,5 +22,7 @@ int check_mode(stack_t *stack)
  */
 int run_monty(FILE *script_fd)
 {
-    /* Implementation of run_monty */
+    UNUSED(script_fd);
+    // Add your implementation here
+    return EXIT_SUCCESS;
 }

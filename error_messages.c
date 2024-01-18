@@ -43,3 +43,14 @@ int unknown_op_error(char *opcode, unsigned int line_number)
     return EXIT_FAILURE;
 }
 
+/**
+ * pchar_error - handles pchar error
+ * @line_number: line number of the opcode in the Monty bytecode file
+ * @message: custom error message
+ * Return: (EXIT_FAILURE)
+ */
+int pchar_error(unsigned int line_number, char *message)
+{
+    fprintf(stderr, "L%u: can't pchar, %s\n", line_number, message);
+    return (EXIT_FAILURE);
+}
