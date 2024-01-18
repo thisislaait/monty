@@ -7,14 +7,13 @@
  */
 void push(stack_t **stack, unsigned int line_number)
 {
-    char *push_arg = strtok(NULL, "\n \t");
+    char *push_arg = strtok(NULL, "\n\t");
+    int pVal;
 
     if (!is_valid_push_arg(push_arg, line_number))
-    {
         exit(EXIT_FAILURE);
-    }
 
-    int pVal = atoi(push_arg);
+    pVal = atoi(push_arg);
 
     stack_t *new_node = create_node(pVal);
     if (!new_node)
@@ -24,9 +23,7 @@ void push(stack_t **stack, unsigned int line_number)
     }
 
     if (*stack == NULL)
-    {
         *stack = new_node;
-    }
     else if (SQ)
     {
         new_node->next = *stack;
@@ -37,9 +34,7 @@ void push(stack_t **stack, unsigned int line_number)
     {
         stack_t *tmp = *stack;
         while (tmp->next != NULL)
-        {
             tmp = tmp->next;
-        }
         tmp->next = new_node;
         new_node->prev = tmp;
     }
@@ -70,9 +65,7 @@ stack_t *create_node(int value)
 {
     stack_t *new_node = malloc(sizeof(stack_t));
     if (!new_node)
-    {
         return NULL;
-    }
 
     new_node->n = value;
     new_node->prev = NULL;
