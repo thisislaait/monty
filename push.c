@@ -1,4 +1,6 @@
 #include "monty.h"
+#include <string.h>
+
 
 /**
  * push - Pushes an element onto the stack.
