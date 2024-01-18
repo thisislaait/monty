@@ -1,13 +1,9 @@
 1) Arithmetic Operations:
-
 i) File Name: arithmetics.c
-
 ii) Prototypes: sub, divide, multiply, moddy
-
 iii) Description: This file contains functions to handle arithmetic operations on the stack, including subtraction (sub), division (divide), multiplication (multiply), and modulus (moddy).
 
 2) Character and String Operations:
-
 i) File Name: char_string_ops.c
 ii) Prototypes: pchar, pstr
 iii) Description: This file implements operations involving characters and strings. The functions included are pchar (print character) and pstr (print string).
