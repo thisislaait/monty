@@ -16,7 +16,6 @@ void push(stack_t **stack, unsigned int line_number)
 	pVal = atoi(push_arg);
 
 	stack_t *new_node = create_node(pVal);
-
 	if (!new_node)
 	{
 		fprintf(stdout, "Error: malloc failed\n");
@@ -34,7 +33,6 @@ void push(stack_t **stack, unsigned int line_number)
 	else
 	{
 		stack_t *tmp = *stack;
-
 		while (tmp->next != NULL)
 			tmp = tmp->next;
 		tmp->next = new_node;
@@ -53,9 +51,9 @@ int is_valid_push_arg(char *push_arg, unsigned int line_number)
 	if (!push_arg || (!isdigit(*push_arg) && *push_arg != '-'))
 	{
 		fprintf(stdout, "L%u: usage: push integer\n", line_number);
-		return (0);
+		return 0;
 	}
-	return (1);
+	return 1;
 }
 
 /**
@@ -66,14 +64,13 @@ int is_valid_push_arg(char *push_arg, unsigned int line_number)
 stack_t *create_node(int value)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
-
 	if (!new_node)
-		return (NULL);
+		return NULL;
 
 	new_node->n = value;
 	new_node->prev = NULL;
 	new_node->next = NULL;
 
-	return (new_node);
+	return new_node;
 }
 
