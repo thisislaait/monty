@@ -9,7 +9,12 @@
  */
 void monty_swap(stack_t **stack, unsigned int line_number)
 {
-    /* Implementation of swap */
+    if (!stack || !*stack || !((*stack)->next))
+    {
+        short_stack_error(line_number, "swap");
+    }
+
+    swap_nodes(stack);
 }
 
 /**
