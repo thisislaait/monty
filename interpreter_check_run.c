@@ -23,6 +23,6 @@ int check_mode(stack_t *stack)
 int run_monty(FILE *script_fd)
 {
     UNUSED(script_fd);
-    // Add your implementation here
+    
     return EXIT_SUCCESS;
 }

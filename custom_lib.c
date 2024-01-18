@@ -14,6 +14,7 @@ char **strtow(char *str, char *delims)
     char **tokens = NULL;
     char *token = NULL;
     int count = 0;
+    int i = 0;
 
     if (!str || !delims)
         return NULL;
@@ -31,14 +32,7 @@ char **strtow(char *str, char *delims)
         tokens[count] = strdup(token);
         if (!tokens[count])
         {
-            // Free previously allocated memory
-            while (count > 0)
-            {
-                count--;
-                free(tokens[count]);
-            }
             free(tokens);
-
             fprintf(stderr, "Error: malloc failed\n");
             exit(EXIT_FAILURE);
         }
@@ -60,6 +54,7 @@ char *get_int(int n)
     char *str = NULL;
     int temp = n;
     int length = 0;
+    int i = 0;
 
     while (temp)
     {
