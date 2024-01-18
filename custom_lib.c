@@ -1,8 +1,6 @@
 /* File Name: custom_lib.c */
 
 #include "monty.h"
-#include <string.h>
-
 /**
  * strtow - Splits a string into words.
  * @str: Input string.
@@ -14,7 +12,7 @@ char **strtow(char *str, char *delims)
     char **tokens = NULL;
     char *token = NULL;
     int count = 0;
-    int i = 0;
+    int i = 0, j = 0;
 
     if (!str || !delims)
         return NULL;
@@ -29,13 +27,24 @@ char **strtow(char *str, char *delims)
     token = strtok(str, delims);
     while (token)
     {
-        tokens[count] = strdup(token);
+        /* Allocate memory for the current token */
+        tokens[count] = malloc(strlen(token) + 1);
         if (!tokens[count])
         {
+            /* Free previously allocated memory */
+            while (count > 0)
+                free(tokens[--count]);
             free(tokens);
+
             fprintf(stderr, "Error: malloc failed\n");
             exit(EXIT_FAILURE);
         }
+
+        /* Copy characters one by one */
+        for (i = 0; token[i]; i++)
+            tokens[count][i] = token[i];
+        tokens[count][i] = '\0';
+
         token = strtok(NULL, delims);
         count++;
     }
@@ -54,7 +63,6 @@ char *get_int(int n)
     char *str = NULL;
     int temp = n;
     int length = 0;
-    int i = 0;
 
     while (temp)
     {
