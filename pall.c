@@ -1,11 +1,12 @@
 #include "monty.h"
 
 /**
- * pall - Prints all values on the stack.
- * @stack: Double pointer to the beginning of the stack.
- * @line_number: Line number in the Monty bytecodes file.
+ * pall - prints all values on the stack, starting from the top of the stack.
+ * @stack: the stack
+ * @line_number: the current line number
+ *
+ * Return: void
  */
-
 void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;

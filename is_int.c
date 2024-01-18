@@ -1,9 +1,10 @@
 #include "monty.h"
 
 /**
- * is_int - Checks if a string represents a valid integer.
- * @str: String to check.
- * Return: 1 if it's a valid integer, 0 otherwise.
+ * is_int - checks if a string is valid for atoi
+ * @str: the string
+ *
+ * Return: 1 for true, 0 for false
  */
 int is_int(char *str)
 {
