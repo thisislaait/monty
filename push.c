@@ -1,11 +1,9 @@
 #include "monty.h"
 
 /**
- * push - pushes an element to the stack.
- * @stack: the stack
- * @line_number: the current line number
- *
- * Return: void
+ * push - Pushes an element onto the stack.
+ * @stack: Double pointer to the beginning of the stack.
+ * @line_number: Line number in the Monty bytecodes file.
  */
 void push(stack_t **stack, unsigned int line_number)
 {
