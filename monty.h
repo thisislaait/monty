@@ -62,6 +62,7 @@ void add_node(stack_t **stack, int value);
 void add_node_end(stack_t **stack, int value);
 void pop_node(stack_t **stack);
 void swap_nodes(stack_t **stack);
+void pop(stack_t **stack, unsigned int line_number);
 
 /* ERROR MESSAGES & ERROR CODES */
 int usage_error(void);
