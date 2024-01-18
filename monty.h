@@ -9,6 +9,7 @@
 
 #define UNUSED(x) (void)(x)
 #define LINE_MAX 1024
+#define PCHAR_ERROR 2
 
 typedef struct stack_s
 {
